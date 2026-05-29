@@ -1,36 +1,73 @@
-# FitManager
+# Bank System Microservices
 
-Sistema de gestión para gimnasios desarrollado con Java y Spring Boot.
+Sistema bancario desarrollado con Java y Spring Boot usando arquitectura de microservicios.
+
+## Objetivo
+
+Construir una aplicación bancaria que permita gestionar clientes, cuentas y transacciones, aplicando buenas prácticas de desarrollo backend empresarial.
+
+## Arquitectura
+
+El sistema estará dividido en microservicios:
+
+- discovery-server
+- api-gateway
+- ms-clientes
+- ms-cuentas
+- ms-transacciones
+- bank-web-jsf
 
 ## Tecnologías
 
 - Java 21
 - Spring Boot
+- Spring Cloud
+- Eureka Server
+- API Gateway
 - Spring Data JPA
 - Hibernate
 - MySQL
-- Spring Security
 - Maven
 - Lombok
-- GitHub
+- Spring Security
+- JSF / PrimeFaces
+- Git y GitHub
 
-## Funcionalidades
+## Módulos
 
-- Gestión de usuarios
-- Gestión de clientes
-- Gestión de membresías
-- Gestión de pagos
-- Registro de asistencias
-- Dashboard administrativo
+### ms-clientes
 
-## Arquitectura
+Gestión de clientes bancarios.
 
-- Controller
-- Service
-- Repository
-- Entity
-- Security
+### ms-cuentas
 
-## Autor
+Gestión de cuentas bancarias, saldo y tipo de cuenta.
 
-Booz Salazar
+### ms-transacciones
+
+Gestión de depósitos, retiros y transferencias.
+
+### discovery-server
+
+Servidor Eureka para registrar microservicios.
+
+### api-gateway
+
+Punto único de entrada al sistema.
+
+### bank-web-jsf
+
+Interfaz web para usuarios del sistema.
+
+## Objetivo profesional
+
+Este proyecto busca demostrar conocimientos en:
+
+- Java Backend
+- Spring Boot
+- Microservicios
+- JPA/Hibernate
+- MySQL
+- Seguridad
+- Arquitectura empresarial
+- Buenas prácticas
