@@ -9,4 +9,6 @@ public interface ClienteService {
     ClienteResponseDTO crearCliente(ClienteRequestDTO request);
     List<ClienteResponseDTO> listarClientes();
     ClienteResponseDTO obtenerPorId(Long id);
+    ClienteResponseDTO actualizarCliente(Long id, ClienteRequestDTO request);
+    void desactivarCliente(Long id);
 }
