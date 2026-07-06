@@ -25,21 +25,10 @@ public class ClienteServiceImpl implements ClienteService {
             throw new IllegalArgumentException("Número de documento inválido para el tipo seleccionado");
         }
 
-        if (clienteRepository.existsByNumeroDocumento(
-                request.getNumeroDocumento()
-        )){
-            throw new IllegalArgumentException (
-                    "El numero de documento ya está registrado."
-            );
+        if (clienteRepository.existsByNumeroDocumentoOrEmail(request.getNumeroDocumento(), request.getEmail())) {
+            throw new IllegalArgumentException("El número de documento o el correo electrónico ya se encuentran registrados.");
         }
 
-        if (clienteRepository.existsByEmail(
-                request.getEmail()
-        )){
-            throw new IllegalArgumentException (
-                    "El correo electronico ya está registrado."
-            );
-        }
         Cliente cliente = Cliente.builder()
                 .nombre(request.getNombre())
                 .apellido(request.getApellido())
@@ -51,6 +40,7 @@ public class ClienteServiceImpl implements ClienteService {
                 .nacionalidad(request.getNacionalidad())
                 .activo(true)
                 .build();
+
         Cliente clienteGuardado = clienteRepository.save(cliente);
 
         return mapToResponse(clienteGuardado);
@@ -76,20 +66,8 @@ public class ClienteServiceImpl implements ClienteService {
             throw new IllegalArgumentException ("Número de documento inválido para el tipo seleccionado.");
         }
 
-        if (clienteRepository.existsByNumeroDocumentoAndIdNot(
-                request.getNumeroDocumento(), id
-        )){
-            throw new IllegalArgumentException (
-                    "El numero de documento ya está registrado por otro cliente."
-            );
-        }
-
-        if (clienteRepository.existsByEmailAndIdNot(
-                request.getEmail(), id
-        )){
-            throw new IllegalArgumentException (
-                    "El correo electronico ya está registrado por otro cliente."
-            );
+        if (clienteRepository.existeDuplicadoActualizacion(id, request.getNumeroDocumento(), request.getEmail())) {
+            throw new IllegalArgumentException("El número de documento o el correo electrónico ya se encuentran registrados por otro cliente.");
         }
 
         cliente.setNombre(request.getNombre());
