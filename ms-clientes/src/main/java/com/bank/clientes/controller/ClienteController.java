@@ -2,7 +2,7 @@ package com.bank.clientes.controller;
 
 import com.bank.clientes.dto.ClienteRequestDTO;
 import com.bank.clientes.dto.ClienteResponseDTO;
-import com.bank.clientes.service.impl.ClienteServiceImpl;
+import com.bank.clientes.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/clientes")
 @RequiredArgsConstructor
 public class ClienteController {
-    private final ClienteServiceImpl clienteService;
+    private final ClienteService clienteService;
 
     @PostMapping
     public ClienteResponseDTO crearCliente(
