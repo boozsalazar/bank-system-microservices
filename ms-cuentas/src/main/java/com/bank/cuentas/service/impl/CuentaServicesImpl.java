@@ -74,6 +74,23 @@ public class CuentaServicesImpl implements CuentaService {
         return mapToResponse(cuenta);
     }
 
+    @Override
+    public CuentaResponseDTO obtenerCuentaPorNumero(String numeroCuenta) {
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta)
+                .orElseThrow(() -> new IllegalArgumentException("La cuenta número " + numeroCuenta + " no existe."));
+        return mapToResponse(cuenta);
+    }
+
+    @Override
+    @Transactional
+    public void actualizarSaldo(String numeroCuenta, BigDecimal nuevoSaldo) {
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta)
+                .orElseThrow(() -> new IllegalArgumentException("No se pudo actualizar: La cuenta no existe."));
+
+        cuenta.setSaldo(nuevoSaldo);
+        cuentaRepository.save(cuenta);
+    }
+
     public CuentaResponseDTO mapToResponse(Cuenta cuenta) {
         return CuentaResponseDTO.builder()
                 .id(cuenta.getId())
